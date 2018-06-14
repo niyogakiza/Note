@@ -10,12 +10,7 @@ class Note extends Component{
         this.state = {
             editing: false
         };
-        this.edit = this.edit.bind(this);
-        this.remove = this.remove.bind(this);
-        this.save = this.save.bind(this);
-        this.renderForm = this.renderForm.bind(this);
-        this.renderDisplay = this.renderDisplay.bind(this)
-        this.randomBetween = this.randomBetween.bind(this);
+
      }
 
      componentWillMount(){
@@ -41,24 +36,24 @@ class Note extends Component{
         );
      }
 
-    randomBetween(x, y, s){
+    randomBetween = (x, y, s) =>{
         return x + Math.ceil(Math.random() * (y-x)) + s;
-    }
-    edit() {
+    };
+    edit = () =>{
         this.setState({ editing: true})
     };
 
-    remove() {
+    remove = () => {
         this.props.onRemove(this.props.index)
     };
 
-    save(e) {
+    save = (e) => {
         e.preventDefault();
         this.props.onChange(this._newText.value, this.props.index);
         this.setState({ editing: false})
     };
 
-    renderForm() {
+    renderForm = () => {
         return (
             <div className="note" style={this.style}>
                 <form onSubmit={this.save}>
@@ -72,7 +67,7 @@ class Note extends Component{
         )
     };
 
-    renderDisplay() {
+    renderDisplay = () => {
         return(
             <div className="note" style={this.style}>
                 <p>{this.props.children}</p>

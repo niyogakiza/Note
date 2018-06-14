@@ -10,11 +10,7 @@ class Board extends Component{
         this.state = {
             notes: []
         };
-        this.add = this.add.bind(this);
-        this.eachNote = this.eachNote.bind(this);
-        this.update = this.update.bind(this);
-        this.remove = this.remove.bind(this);
-        this.nextId = this.nextId.bind(this);
+
     }
 
     componentWillMount(){
@@ -24,11 +20,10 @@ class Board extends Component{
                 .then(res => res.json())
                 .then(json => json[0].split('. ').forEach(sentence => self.add(sentence.substring(0, 25))))
 
-
         }
     }
 
-    add(text){
+    add = (text) =>{
         this.setState(prevState=> ({
             notes: [
                 ...prevState.notes,
@@ -38,14 +33,15 @@ class Board extends Component{
                 }
             ]
         }))
-    }
-    nextId(){
+    };
+
+    nextId = () =>{
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
-    }
+    };
 
 
-    update(newText, i) {
+    update = (newText, i) => {
         console.log('Updating item at index', i, newText);
         this.setState(prevState => ({
             notes: prevState.notes.map(
@@ -54,13 +50,13 @@ class Board extends Component{
         }))
     };
 
-    remove(id) {
+    remove = (id) => {
         this.setState( prevState => ({
             notes: prevState.notes.filter(note => note.id !== id)
         }))
     };
 
-    eachNote(note, i) {
+    eachNote = (note) => {
         return(
             <Note
                 key={note.id}
