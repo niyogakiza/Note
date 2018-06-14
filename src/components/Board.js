@@ -26,10 +26,13 @@ class Board extends Component{
 
             ]
         }
+        this.eachNote = this.eachNote.bind(this);
+        this.update = this.update.bind(this);
+        this.remove = this.remove.bind(this)
 
     }
 
-    update = (newText, i) =>{
+    update (newText, i) {
         console.log('Updating item at index', i, newText);
         this.setState(prevState => ({
             notes: prevState.notes.map(
@@ -38,13 +41,13 @@ class Board extends Component{
         }))
     };
 
-    remove = (id) =>{
+    remove (id) {
         this.setState( prevState => ({
             notes: prevState.notes.filter(note => note.id !== id)
         }))
     };
 
-    eachNote =(note, i) => {
+    eachNote(note, i) {
         return(
             <Note
                 key={i}
